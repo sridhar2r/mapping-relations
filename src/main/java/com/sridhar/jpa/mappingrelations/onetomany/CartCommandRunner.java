@@ -42,14 +42,15 @@ public class CartCommandRunner implements CommandLineRunner {
         Double totalPrice = getTotalPrice(items);
         Cart cart = Cart.builder().purchaserName("Sridhar").purchaseDate(today).totalPrice(totalPrice)
                 .items(items).build();
-        Double totalPrice1 = getTotalPrice(items1);
-        Cart cart1 = Cart.builder().purchaserName("Mani").purchaseDate(today).totalPrice(totalPrice1)
-                .items(items1).build();
+        items.forEach(item-> item.setCart(cart));
+       // Double totalPrice1 = getTotalPrice(items1);
+       /* Cart cart1 = Cart.builder().purchaserName("Mani").purchaseDate(today).totalPrice(totalPrice1)
+                .items(items1).build();*/
         cartRepository.save(cart);
-        cartRepository.save(cart1);
+        //cartRepository.save(cart1);
 
         System.out.println(cartRepository.findByPurchaserNameAndPurchaseDate("Sridhar", today));
-        System.out.println(cartRepository.findByPurchaserNameAndPurchaseDate("Mani", today));
+       // System.out.println(cartRepository.findByPurchaserNameAndPurchaseDate("Mani", today));
     }
 
     private Double getTotalPrice(List<Item> items) {

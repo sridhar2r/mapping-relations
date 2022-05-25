@@ -28,6 +28,6 @@ public class Cart {
     private LocalDate purchaseDate;
     @Column(name = "totalPrice")
     private Double totalPrice;
-    @OneToMany(mappedBy = "cart",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<Item> items;
 }
